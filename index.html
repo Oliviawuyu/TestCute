@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>New Born</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="New Born" />
+	<meta name="keywords" content="New Born" />
+	<meta name="author" content="Olivia" />
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap" rel="stylesheet">
+
+
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<!-- SweetAlert 2 CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+	<!-- SweetAlert 2 JS -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+	<!-- Bootstrap -->
+	<script src="js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" href="css/style.css">
+	<style>
+		/* 自定義關閉按鈕的顏色 */
+		.swal2-confirm {
+			/*color: #8f7c6a !important; !* 設置為你想要的顏色 *!*/
+			background-color: #8f7c6a  ;
+		}
+
+		#modal-img {
+			transition: transform 0.3s ease;
+		}
+
+		#modal-img.zoom-in {
+			transform: scale(1.5); /* 放大 1.5 倍 */
+		}
+
+		#modal-img.zoom-out {
+			transform: scale(1); /* 回到原始大小 */
+		}
+
+		.swal2-styled{
+			font-size: 18px;
+		}
+
+	</style>
+
+
+	</head>
+	<body>
+
+		<header id="baby-header" role="banner">
+			<div class="container text-center">
+<!--				<div class="caveat-brush-regular" style="font-size: 100px;color:#30251d">New Born</div>-->
+				<div id="baby-logo">
+					<div class="caprasimo-regular" style="font-size: 70px;color:#ad9986; text-align: center" >New Born</div>
+				</div>
+<!--				<nav>-->
+<!--					<ul>-->
+<!--						<li><a href="about.html">About</a></li>-->
+<!--						<li><a href="work.html">Photos</a></li>-->
+<!--					</ul>-->
+<!--				</nav>-->
+			</div>
+		</header>
+
+
+		<!-- END #fh5co-header -->
+		<div class="album">
+			<div class="responsive-container-block bg">
+				<div class="responsive-container-block img-cont">
+					<img class="img" src="images/S__72835175_0.jpg" alt="Photo 1" onclick="showImage(this)">
+					<img class="img" src="images/S__72835164_0.jpg" alt="Photo 2" onclick="showImage(this)">
+					<img class="img img-last" src="images/S__72835161_0.jpg" alt="Photo 3"  onclick="showImage(this)">
+				</div>
+				<div class="responsive-container-block img-cont">
+					<img class="img img-big" src="images/S__72835168_0.jpg" onclick="showImage(this)">
+					<img class="img img-big img-last" src="images/S__72835169_0.jpg" onclick="showImage(this)">
+				</div>
+				<div class="responsive-container-block img-cont">
+					<img class="img" src="images/S__72835172_0.jpg" onclick="showImage(this)">
+					<img class="img" src="images/S__72835174_0.jpg" onclick="showImage(this)">
+					<img class="img" src="images/img_20.jpg" onclick="showImage(this)">
+				</div>
+			</div>
+		</div>
+
+
+		<!-- END .container-fluid -->
+
+		<footer id="baby-footer" role="contentinfo">
+			<div class="container-fluid">
+				<div class="footer-content">
+					<div class="social">
+						<a href="#"><i class="icon-facebook3"></i></a>
+						<a href="#"><i class="icon-instagram2"></i></a>
+						<a href="#"><i class="icon-linkedin2"></i></a>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- END #fh5co-footer -->
+
+		<!-- SweetAlert 2 JS -->
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!--		&lt;!&ndash; Custom JavaScript &ndash;&gt;-->
+<!--		<script>-->
+<!--			function showImage(imgElement) {-->
+<!--				Swal.fire({-->
+<!--					imageUrl: imgElement.src, // 顯示點擊的圖片-->
+<!--					imageAlt: 'Photo', // 圖片的 alt 信息-->
+<!--					showCloseButton: true, // 顯示關閉按鈕-->
+<!--					imageWidth: '100%', // 設置圖片寬度為 100%-->
+<!--					imageHeight: 'auto', // 設置圖片高度自動-->
+<!--					width: 'auto' // 設置彈窗寬度為 90%-->
+<!--				});-->
+<!--			}-->
+<!--		</script>-->
+
+		<!-- Custom JavaScript -->
+		<!-- Custom JavaScript -->
+		<!-- Custom JavaScript -->
+
+		<script>
+			function showImage(imgElement) {
+				const imageUrl = imgElement.src;
+				Swal.fire({
+					html: `<img id="modal-img" src="${imageUrl}" alt="Photo" style="width: 100%; height: auto;" onclick="toggleZoom()">`,
+					showCloseButton: true,
+					confirmButtonText: '下載圖片', // 自定義確認按鈕的文本
+					showCancelButton: true, // 可選取消按鈕
+					cancelButtonText: '取消', // 自定義取消按鈕的文本
+					height: 'auto',
+					customClass: {
+						closeButton: 'swal2-close'  // 為關閉按鈕應用自定義樣式
+					},
+					preConfirm: () => {
+						// 當按下確認按鈕時觸發圖片下載
+						const link = document.createElement('a');
+						link.href = imageUrl;
+						link.download = 'downloaded_image.jpg';
+						document.body.appendChild(link);
+						link.click();
+						document.body.removeChild(link);
+					}
+				});
+			}
+
+
+
+			// 切換圖片縮放
+			function toggleZoom() {
+				const img = document.getElementById("modal-img");
+				if (img.classList.contains("zoom-in")) {
+					img.classList.remove("zoom-in");
+					img.classList.add("zoom-out");
+				} else {
+					img.classList.remove("zoom-out");
+					img.classList.add("zoom-in");
+				}
+			}
+		</script>
+	</body>
+</html>
+
